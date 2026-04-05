@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 
 ### Added
+* Added a use_circular_points flag in the Shader.draw_point() method to disable circular mask on points on linux because it did not work on opengl-linux. This flag is checked in model.frag before applying the mask on points
 
 ### Changed
 
