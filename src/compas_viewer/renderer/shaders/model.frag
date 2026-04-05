@@ -14,6 +14,7 @@ in float object_opacity;
 // Uniforms
 uniform float opacity;
 uniform bool is_lighted;
+uniform bool use_circular_points;
 uniform vec3 selection_color;
 uniform int element_type;
 uniform bool is_instance;
@@ -50,7 +51,7 @@ void main() {
     }
 
     // Draw circular points
-    if (element_type == 0) {
+    if (element_type == 0 && use_circular_points) {
         vec2 center = gl_PointCoord - vec2(0.5);
         if (length(center) > 0.5) {
             discard;
