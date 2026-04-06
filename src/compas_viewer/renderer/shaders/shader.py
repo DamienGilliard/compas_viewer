@@ -215,10 +215,6 @@ class Shader:
         background : bool, optional
             Draw in background.
         """
-        use_circular_points = True
-        if sys.platform == "linux" or sys.platform == "linux2":
-            use_circular_points = False
-        self.uniform1i("use_circular_points", use_circular_points)
         
         GL.glPointSize(size)
         if elements:

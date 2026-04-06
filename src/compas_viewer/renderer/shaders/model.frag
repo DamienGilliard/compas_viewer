@@ -14,7 +14,6 @@ in float object_opacity;
 // Uniforms
 uniform float opacity;
 uniform bool is_lighted;
-uniform bool use_circular_points;
 uniform vec3 selection_color;
 uniform int element_type;
 uniform bool is_instance;
@@ -50,11 +49,18 @@ void main() {
         alpha = max(alpha, 0.5);
     }
 
-    // Draw circular points
-    if (element_type == 0 && use_circular_points) {
-        vec2 center = gl_PointCoord - vec2(0.5);
-        if (length(center) > 0.5) {
-            discard;
+    // Draw circular points if gl_PointCoord allows
+    if (element_type == 0) {
+        vec2 pc = gl_PointCoord;
+
+        // Detect broken coords (Mesa/linux case)
+        if (pc.x == 0.0 && pc.y == 0.0) {
+            // fallback: don't discard anything
+        } else {
+            vec2 center = pc - vec2(0.5);
+            if (length(center) > 0.5) {
+                discard;
+            }
         }
     }
 
