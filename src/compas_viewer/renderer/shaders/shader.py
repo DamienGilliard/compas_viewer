@@ -214,6 +214,7 @@ class Shader:
         background : bool, optional
             Draw in background.
         """
+        
         GL.glPointSize(size)
         if elements:
             if background:
